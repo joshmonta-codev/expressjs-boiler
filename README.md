@@ -1,5 +1,5 @@
 # expressjs-boiler
-# Base On GraphQL Boilerplate
+# Base On ExpressJS Boilerplate
 #### Technologies used
 
 - NodeJS and TypeScript
