@@ -47,8 +47,8 @@
 #### Start mongoDB with docker-compose
 
 - Make sure you have docker installed on your machine
-- Run `docker-compose build`
-- Run `docker-compose up` to start the containers
+- Run `docker build -t myapp:v1 .`
+- Run `docker run --name myapp_c -p 4000:4000 --rm myapp:v1` to start the containers
 - Run `docker-compose down` to remove the running containers
 
 This will spin up a mongoDB instance locally, you can also add in the future other stuff like redis, elastic search ...
