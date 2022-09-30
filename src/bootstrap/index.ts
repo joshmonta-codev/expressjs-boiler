@@ -13,6 +13,6 @@ export default async (config: Config) => {
     });
 
     app.get("/", (req: Request, res: Response) => {
-        res.send("Typescript nodejs works!")
+        res.send({ data: "data" })
     });
 }
