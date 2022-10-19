@@ -59,12 +59,12 @@ If using docker doesn't appeal you, feel free to install mondoDB manually or to 
 - Run `npm run build` then `npm run dev`
 
 
-## Deploy Docker image project to Kubernetes
+## Deploy Docker image project to Kubernetes cluster
 
 This step assumes that Kubernetes is already installed in the server or device if not please refer to 
 - https://kubernetes.io/docs/setup/
 
-#### Make sure that your kubernetes cluster has access to the docker image
+### Make sure that your kubernetes cluster has access to the docker image
 Refer to this link
 - https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 
@@ -102,7 +102,7 @@ spec:
   - name: regcred
 ```
 
-#### Deploy the kubernetes cluster to machine
+### Deploy the kubernetes cluster to machine
 
 Apply `.yaml` file to cluster
 - `kubectl apply -f <name_of_deployment_file>.yaml`
