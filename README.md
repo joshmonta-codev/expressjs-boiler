@@ -57,3 +57,63 @@ If using docker doesn't appeal you, feel free to install mondoDB manually or to 
 #### Start server for development
 
 - Run `npm run build` then `npm run dev`
+
+
+## Deploy Docker image project to Kubernetes
+
+This step assumes that Kubernetes is already installed in the server or device if not please refer to 
+- https://kubernetes.io/docs/setup/
+
+#### Make sure that your kubernetes cluster has access to the docker image
+Refer to this link
+- https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+
+Login to docker on the terminal
+- docker login
+
+Check `config.json` file of `.docker`
+- cat ~/.docker/config.json
+
+```Note: If you use a Docker credentials store, you won't see that `auth` entry but a `credsStore` entry with the name of the store as value. In that case, you can create a secret directly. if not refer to this https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials```
+
+Create this secret naming it regcred:
+- kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>
+
+Where:
+<your-registry-server> is your Private Docker Registry FQDN. Use https://index.docker.io/v1/ for DockerHub.
+<your-name> is your Docker username.
+<your-pword> is your Docker password.
+<your-email> is your Docker email.
+
+After that make sure that your kubernetes deployment file is using `regcred`
+For Example:
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: private-reg
+spec:
+  containers:
+  - name: private-reg-container
+    image: <your-private-image>
+  imagePullSecrets:
+  - name: regcred
+```
+
+#### Deploy the kubernetes cluster to machine
+
+Apply `.yaml` file to cluster
+- kubectl apply -f <name_of_deployment_file>.yaml
+
+Check if deployments are produced
+- kubectl get deployment
+
+Check if pods are working
+- kubectl get pods
+
+Check if Service are good
+- kubectl get services
+
+
+
+
