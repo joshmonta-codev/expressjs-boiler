@@ -69,15 +69,17 @@ Refer to this link
 - https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 
 Login to docker on the terminal
-- docker login
+- `docker login`
 
 Check `config.json` file of `.docker`
-- cat ~/.docker/config.json
+- `cat ~/.docker/config.json`
 
-```Note: If you use a Docker credentials store, you won't see that `auth` entry but a `credsStore` entry with the name of the store as value. In that case, you can create a secret directly. if not refer to this https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials```
+```
+Note: If you use a Docker credentials store, you won't see that `auth` entry but a `credsStore` entry with the name of the store as value. In that case, you can create a secret directly. if not refer to this https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials
+```
 
 Create this secret naming it regcred:
-- kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>
+- `kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>`
 
 Where:
 <your-registry-server> is your Private Docker Registry FQDN. Use https://index.docker.io/v1/ for DockerHub.
@@ -103,16 +105,16 @@ spec:
 #### Deploy the kubernetes cluster to machine
 
 Apply `.yaml` file to cluster
-- kubectl apply -f <name_of_deployment_file>.yaml
+- `kubectl apply -f <name_of_deployment_file>.yaml`
 
 Check if deployments are produced
-- kubectl get deployment
+- `kubectl get deployment`
 
 Check if pods are working
-- kubectl get pods
+- `kubectl get pods`
 
 Check if Service are good
-- kubectl get services
+- `kubectl get services`
 
 
 
