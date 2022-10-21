@@ -116,5 +116,10 @@ Check if Service are good
 - `kubectl get services`
 
 
+## Update docker build and push to docker repo
+- ```docker build . -t tanduhm-backend-api:latest```
+- ```docker image tag tanduhm-backend-api joshcodev19/tanduhm-backend-api:latest```
+- ```docker image push joshcodev19/tanduhm-backend-api:latest```
+
 
 
